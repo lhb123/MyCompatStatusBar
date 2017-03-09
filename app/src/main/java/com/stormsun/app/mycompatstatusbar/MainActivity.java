@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                     | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            // 状态栏
+            // 状态栏（以上几行代码必须，参考setStatusBarColor|setNavigationBarColor方法源码）
             window.setStatusBarColor(Color.TRANSPARENT);
             // 虚拟导航键
             window.setNavigationBarColor(Color.TRANSPARENT);
@@ -44,5 +44,18 @@ public class MainActivity extends AppCompatActivity {
             // 虚拟导航键
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
+    }
+
+    /**
+     * 获取状态栏高度
+     * @return
+     */
+    public int getStatusBarHeight() {
+        int statusBarHeight = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            statusBarHeight = getResources().getDimensionPixelSize(resourceId);
+        }
+        return statusBarHeight;
     }
 }
